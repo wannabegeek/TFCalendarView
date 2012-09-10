@@ -293,7 +293,7 @@
 
 #pragma mark - TFDateControlBarDelegate
 
-- (void)nextMonth:(TFDateControlBar *)dateControlBar {
+- (void)previousMonth:(TFDateControlBar *)dateControlBar {
 	_currentOffset--;
 	[_matrix deselectAllCells];
 
@@ -353,7 +353,7 @@
 	}
 }
 
-- (void)previousMonth:(TFDateControlBar *)dateControlBar {
+- (void)nextMonth:(TFDateControlBar *)dateControlBar {
 	_currentOffset++;
 	[_matrix deselectAllCells];
 
