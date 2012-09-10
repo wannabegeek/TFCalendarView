@@ -29,10 +29,11 @@
 	[super drawRect:dirtyRect];
 	[_gradient drawInRect:[self bounds] angle:90.0];
 
-//	NSRect lineRect = [self bounds];
-//	lineRect.size.height = SCOPE_BAR_BORDER_WIDTH;
-//	[SCOPE_BAR_BORDER_COLOR set];
-//	NSRectFill(lineRect);
+	NSRect lineRect = [self bounds];
+	lineRect.origin.y = lineRect.size.height - 1;
+	lineRect.size.height = SCOPE_BAR_BORDER_WIDTH;
+	[SCOPE_BAR_BORDER_COLOR set];
+	NSRectFill(lineRect);
 
 //	if (topBorder) {
 //		lineRect = [self bounds];

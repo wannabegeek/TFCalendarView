@@ -17,4 +17,5 @@ typedef enum {
 @interface CalendarDayCell : NSCell
 
 @property (assign) CellMonthRepresentation monthRepresentation;
+@property (assign) BOOL depressed;
 @end

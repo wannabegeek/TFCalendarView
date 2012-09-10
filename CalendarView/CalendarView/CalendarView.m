@@ -31,6 +31,9 @@
 
 @property (assign) BOOL animationInProgress;
 
+@property (strong) NSDate *depressedRangeStart;
+@property (strong) NSDate *depressedRangeEnd;
+
 - (void)populateMatrix:(CalendarMatrix *)matrix offsetFromCurrentMonth:(NSInteger)offset;
 @end
 
@@ -46,11 +49,15 @@
 @synthesize selectedDate = _selectedDate;
 @synthesize animationInProgress = _animationInProgress;
 @synthesize enabled = _enabled;
+@synthesize depressedRangeStart = _depressedRangeStart;
+@synthesize depressedRangeEnd = _depressedRangeEnd;
 
 - (id)initWithFrame:(NSRect)frameRect {
 	if ((self = [super initWithFrame:frameRect])) {
 
 		_selectedDate = [[NSDate date] dateWithoutTimeElements];
+		_depressedRangeStart = [NSDate date];
+		_depressedRangeEnd = [NSDate date];
 
 		NSRect matrixFrame = frameRect;
 		matrixFrame.size.height -= DATE_BAR_HEIGHT;
@@ -89,6 +96,11 @@
 		dateBarFrame.size.height = DATE_BAR_HEIGHT;
 		dateBarFrame.origin.y = _matrix.frame.size.height - 1.0f;// + 1.0f;
 
+		NSShadow *textShadow = [[NSShadow alloc] init];
+		[textShadow setShadowColor:[NSColor whiteColor]];
+		[textShadow setShadowOffset:NSMakeSize(0, -1)];
+		[textShadow setShadowBlurRadius:0.0];
+
 		_dateBar = [[GradientBackgroundView alloc] initWithFrame:dateBarFrame];
 
 		_dateLabel = [[NSTextField alloc] initWithFrame:NSInsetRect([_dateBar bounds], 40.0f, 10.0f)];
@@ -100,6 +112,7 @@
 		[_dateLabel setEditable:NO];
 		_dateLabel.textColor = [NSColor darkGrayColor];
 		_dateLabel.backgroundColor = [NSColor clearColor];
+		_dateLabel.shadow = textShadow;
 		[_dateBar addSubview:_dateLabel];
 
 		NSRect buttonRect = NSZeroRect;
@@ -137,7 +150,33 @@
 			}
 		}
 
+		// We now need to add the day lables at the top of each column
+		NSArray *daysOfTheWeek = [NSArray arrayWithObjects:@"Sun", @"Mon", @"Tues", @"Wed", @"Thurs", @"Fri", @"Sat", nil];
 
+		NSUInteger c = 0;
+		for (NSString *day in daysOfTheWeek) {
+			NSRect frame = [_dateBar bounds];
+			frame.size.height = 10.0f;
+			frame.size.width = cellSize;
+			frame.origin.y = 1.0f;
+			frame.origin.x = c * cellSize;
+			NSTextField *dayLabel = [[NSTextField alloc] initWithFrame:frame];
+			dayLabel.autoresizingMask |= NSViewMinXMargin | NSViewMaxXMargin | NSViewWidthSizable;
+			dayLabel.font = [NSFont fontWithName:@"Helvetica" size:9.0f];
+			dayLabel.alignment = NSCenterTextAlignment;
+			[dayLabel setBordered:NO];
+			[dayLabel setBezeled:NO];
+			[dayLabel setEditable:NO];
+			dayLabel.textColor = [NSColor grayColor];
+			dayLabel.shadow = textShadow;
+			dayLabel.backgroundColor = [NSColor clearColor];
+
+			dayLabel.stringValue = day;
+			
+			[_dateBar addSubview:dayLabel];
+			c++;
+		}
+		
 		[self addSubview:_dateBar];
 
 		// populate teh matrix witht eh current offset
@@ -365,6 +404,12 @@
 				[matrix selectCell:cell];
 			}
 
+			if (_depressedRangeStart && _depressedRangeEnd && ([currentDay fallsOnSameDayAsDate:_depressedRangeStart] || [currentDay fallsOnSameDayAsDate:_depressedRangeEnd] || ([currentDay laterDate:_depressedRangeStart] == currentDay && [currentDay earlierDate:_depressedRangeEnd] == currentDay))) {
+				cell.depressed = YES;
+			} else {
+				cell.depressed = NO;
+			}
+
 			// add on 1 day to our current date, this will continue until our matrix is full
 			currentDay = [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:currentDay options:0];
 		}
@@ -449,5 +494,12 @@
 	_enabled = enabled;
 	[_matrix setEnabled:_enabled];
 }
+
+- (void)setDepressedStateFromDate:(NSDate *)startDate to:(NSDate *)endDate {
+	_depressedRangeStart = startDate;
+	_depressedRangeEnd = endDate;
+	[self populateMatrix:_matrix offsetFromCurrentMonth:_currentOffset];
+}
+
 
 @end

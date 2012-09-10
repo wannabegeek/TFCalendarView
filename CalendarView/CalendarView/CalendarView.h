@@ -13,4 +13,5 @@
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSDate *selectedDate;
 
+- (void)setDepressedStateFromDate:(NSDate *)startDate to:(NSDate *)endDate;
 @end
