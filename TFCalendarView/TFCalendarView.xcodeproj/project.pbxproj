@@ -28,14 +28,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E2432BFE15F913EC007F2391 /* CalendarView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalendarView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2432BFE15F913EC007F2391 /* TFCalendarView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TFCalendarView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2432C0115F913EC007F2391 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E2432C0415F913EC007F2391 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E2432C0515F913EC007F2391 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E2432C0615F913EC007F2391 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E2432C0915F913EC007F2391 /* CalendarView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalendarView-Info.plist"; sourceTree = "<group>"; };
+		E2432C0915F913EC007F2391 /* TFCalendarView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFCalendarView-Info.plist"; sourceTree = "<group>"; };
 		E2432C0B15F913EC007F2391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E2432C0D15F913EC007F2391 /* CalendarView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalendarView-Prefix.pch"; sourceTree = "<group>"; };
+		E2432C0D15F913EC007F2391 /* TFCalendarView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFCalendarView-Prefix.pch"; sourceTree = "<group>"; };
 		E2432C0E15F913EC007F2391 /* TFCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFCalendarView.h; sourceTree = "<group>"; };
 		E2432C0F15F913EC007F2391 /* TFCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFCalendarView.m; sourceTree = "<group>"; };
 		E2432C4415F915B3007F2391 /* TFCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCalendarDayCell.h; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 		E2432BF215F913EC007F2391 = {
 			isa = PBXGroup;
 			children = (
-				E2432C0715F913EC007F2391 /* CalendarView */,
+				E2432C0715F913EC007F2391 /* TFCalendarView */,
 				E2432C0015F913EC007F2391 /* Frameworks */,
 				E2432BFF15F913EC007F2391 /* Products */,
 			);
@@ -78,7 +78,7 @@
 		E2432BFF15F913EC007F2391 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2432BFE15F913EC007F2391 /* CalendarView.framework */,
+				E2432BFE15F913EC007F2391 /* TFCalendarView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		E2432C0715F913EC007F2391 /* CalendarView */ = {
+		E2432C0715F913EC007F2391 /* TFCalendarView */ = {
 			isa = PBXGroup;
 			children = (
 				E2432C0E15F913EC007F2391 /* TFCalendarView.h */,
@@ -119,15 +119,15 @@
 				E2432C6815FD1036007F2391 /* NSDate+Calendar.m */,
 				E2432C0815F913EC007F2391 /* Supporting Files */,
 			);
-			path = CalendarView;
+			path = TFCalendarView;
 			sourceTree = "<group>";
 		};
 		E2432C0815F913EC007F2391 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E2432C0915F913EC007F2391 /* CalendarView-Info.plist */,
+				E2432C0915F913EC007F2391 /* TFCalendarView-Info.plist */,
 				E2432C0A15F913EC007F2391 /* InfoPlist.strings */,
-				E2432C0D15F913EC007F2391 /* CalendarView-Prefix.pch */,
+				E2432C0D15F913EC007F2391 /* TFCalendarView-Prefix.pch */,
 				E2432C5615FA6F6D007F2391 /* leftarrow.png */,
 				E2432C5715FA6F6D007F2391 /* leftarrow@2x.png */,
 				E2432C5815FA6F6D007F2391 /* rightarrow.png */,
@@ -155,9 +155,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E2432BFD15F913EC007F2391 /* CalendarView */ = {
+		E2432BFD15F913EC007F2391 /* TFCalendarView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2432C1315F913EC007F2391 /* Build configuration list for PBXNativeTarget "CalendarView" */;
+			buildConfigurationList = E2432C1315F913EC007F2391 /* Build configuration list for PBXNativeTarget "TFCalendarView" */;
 			buildPhases = (
 				E2432BF915F913EC007F2391 /* Sources */,
 				E2432BFA15F913EC007F2391 /* Frameworks */,
@@ -168,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = CalendarView;
-			productName = CalendarView;
-			productReference = E2432BFE15F913EC007F2391 /* CalendarView.framework */;
+			name = TFCalendarView;
+			productName = TFCalendarView;
+			productReference = E2432BFE15F913EC007F2391 /* TFCalendarView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Tom Fewster";
 			};
-			buildConfigurationList = E2432BF715F913EC007F2391 /* Build configuration list for PBXProject "CalendarView" */;
+			buildConfigurationList = E2432BF715F913EC007F2391 /* Build configuration list for PBXProject "TFCalendarView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -194,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2432BFD15F913EC007F2391 /* CalendarView */,
+				E2432BFD15F913EC007F2391 /* TFCalendarView */,
 			);
 		};
 /* End PBXProject section */
@@ -301,9 +301,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarView/CalendarView-Prefix.pch";
-				INFOPLIST_FILE = "CalendarView/CalendarView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TFCalendarView/TFCalendarView-Prefix.pch";
+				INFOPLIST_FILE = "TFCalendarView/TFCalendarView-Info.plist";
+				PRODUCT_NAME = TFCalendarView;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -316,9 +316,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarView/CalendarView-Prefix.pch";
-				INFOPLIST_FILE = "CalendarView/CalendarView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TFCalendarView/TFCalendarView-Prefix.pch";
+				INFOPLIST_FILE = "TFCalendarView/TFCalendarView-Info.plist";
+				PRODUCT_NAME = TFCalendarView;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2432BF715F913EC007F2391 /* Build configuration list for PBXProject "CalendarView" */ = {
+		E2432BF715F913EC007F2391 /* Build configuration list for PBXProject "TFCalendarView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2432C1115F913EC007F2391 /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2432C1315F913EC007F2391 /* Build configuration list for PBXNativeTarget "CalendarView" */ = {
+		E2432C1315F913EC007F2391 /* Build configuration list for PBXNativeTarget "TFCalendarView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2432C1415F913EC007F2391 /* Debug */,

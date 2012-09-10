@@ -89,7 +89,7 @@
 		// navigating the months
 		NSRect dateBarFrame = [self bounds];
 		dateBarFrame.size.height = DATE_BAR_HEIGHT;
-		dateBarFrame.origin.y = _matrix.frame.size.height - 1.0f;// + 1.0f;
+		dateBarFrame.origin.y = _matrix.frame.size.height;
 
 		_dateBar = [[TFDateControlBar alloc] initWithFrame:dateBarFrame];
 		_dateBar.delegate = self;

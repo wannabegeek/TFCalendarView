@@ -13,24 +13,24 @@
 		E2432C3615F91446007F2391 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E2432C3415F91446007F2391 /* Credits.rtf */; };
 		E2432C3915F91446007F2391 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C3815F91446007F2391 /* AppDelegate.m */; };
 		E2432C3C15F91446007F2391 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2432C3A15F91446007F2391 /* MainMenu.xib */; };
-		E2432C4315F9146D007F2391 /* CalendarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2432C4215F9146D007F2391 /* CalendarView.framework */; };
+		E2432D2115FE84BF007F2391 /* TFCalendarView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2432D2015FE84BF007F2391 /* TFCalendarView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E2432C2115F91446007F2391 /* CalendarViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2432C2115F91446007F2391 /* TFCalendarViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFCalendarViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2432C2515F91446007F2391 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E2432C2815F91446007F2391 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E2432C2915F91446007F2391 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E2432C2A15F91446007F2391 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E2432C2D15F91446007F2391 /* CalendarViewExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalendarViewExample-Info.plist"; sourceTree = "<group>"; };
+		E2432C2D15F91446007F2391 /* TFCalendarViewExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFCalendarViewExample-Info.plist"; sourceTree = "<group>"; };
 		E2432C2F15F91446007F2391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E2432C3115F91446007F2391 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E2432C3315F91446007F2391 /* CalendarViewExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalendarViewExample-Prefix.pch"; sourceTree = "<group>"; };
+		E2432C3315F91446007F2391 /* TFCalendarViewExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFCalendarViewExample-Prefix.pch"; sourceTree = "<group>"; };
 		E2432C3515F91446007F2391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		E2432C3715F91446007F2391 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E2432C3815F91446007F2391 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E2432C3B15F91446007F2391 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		E2432C4215F9146D007F2391 /* CalendarView.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = CalendarView.framework; path = ../CalendarView/build/Release/CalendarView.framework; sourceTree = "<group>"; };
+		E2432D2015FE84BF007F2391 /* TFCalendarView.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = TFCalendarView.framework; path = ../TFCalendarView/build/Release/TFCalendarView.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2432C4315F9146D007F2391 /* CalendarView.framework in Frameworks */,
+				E2432D2115FE84BF007F2391 /* TFCalendarView.framework in Frameworks */,
 				E2432C2615F91446007F2391 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,8 +49,8 @@
 		E2432C1615F91445007F2391 = {
 			isa = PBXGroup;
 			children = (
-				E2432C4215F9146D007F2391 /* CalendarView.framework */,
-				E2432C2B15F91446007F2391 /* CalendarViewExample */,
+				E2432D2015FE84BF007F2391 /* TFCalendarView.framework */,
+				E2432C2B15F91446007F2391 /* TFCalendarViewExample */,
 				E2432C2415F91446007F2391 /* Frameworks */,
 				E2432C2215F91446007F2391 /* Products */,
 			);
@@ -59,7 +59,7 @@
 		E2432C2215F91446007F2391 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2432C2115F91446007F2391 /* CalendarViewExample.app */,
+				E2432C2115F91446007F2391 /* TFCalendarViewExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,7 +83,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		E2432C2B15F91446007F2391 /* CalendarViewExample */ = {
+		E2432C2B15F91446007F2391 /* TFCalendarViewExample */ = {
 			isa = PBXGroup;
 			children = (
 				E2432C3715F91446007F2391 /* AppDelegate.h */,
@@ -91,16 +91,16 @@
 				E2432C3A15F91446007F2391 /* MainMenu.xib */,
 				E2432C2C15F91446007F2391 /* Supporting Files */,
 			);
-			path = CalendarViewExample;
+			path = TFCalendarViewExample;
 			sourceTree = "<group>";
 		};
 		E2432C2C15F91446007F2391 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E2432C2D15F91446007F2391 /* CalendarViewExample-Info.plist */,
+				E2432C2D15F91446007F2391 /* TFCalendarViewExample-Info.plist */,
 				E2432C2E15F91446007F2391 /* InfoPlist.strings */,
 				E2432C3115F91446007F2391 /* main.m */,
-				E2432C3315F91446007F2391 /* CalendarViewExample-Prefix.pch */,
+				E2432C3315F91446007F2391 /* TFCalendarViewExample-Prefix.pch */,
 				E2432C3415F91446007F2391 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2432C2015F91446007F2391 /* CalendarViewExample */ = {
+		E2432C2015F91446007F2391 /* TFCalendarViewExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2432C3F15F91446007F2391 /* Build configuration list for PBXNativeTarget "CalendarViewExample" */;
+			buildConfigurationList = E2432C3F15F91446007F2391 /* Build configuration list for PBXNativeTarget "TFCalendarViewExample" */;
 			buildPhases = (
 				E2432C1D15F91446007F2391 /* Sources */,
 				E2432C1E15F91446007F2391 /* Frameworks */,
@@ -121,9 +121,9 @@
 			);
 			dependencies = (
 			);
-			name = CalendarViewExample;
+			name = TFCalendarViewExample;
 			productName = CalendarViewExample;
-			productReference = E2432C2115F91446007F2391 /* CalendarViewExample.app */;
+			productReference = E2432C2115F91446007F2391 /* TFCalendarViewExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +135,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Tom Fewster";
 			};
-			buildConfigurationList = E2432C1B15F91445007F2391 /* Build configuration list for PBXProject "CalendarViewExample" */;
+			buildConfigurationList = E2432C1B15F91445007F2391 /* Build configuration list for PBXProject "TFCalendarViewExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -147,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2432C2015F91446007F2391 /* CalendarViewExample */,
+				E2432C2015F91446007F2391 /* TFCalendarViewExample */,
 			);
 		};
 /* End PBXProject section */
@@ -261,9 +261,9 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarViewExample/CalendarViewExample-Prefix.pch";
-				INFOPLIST_FILE = "CalendarViewExample/CalendarViewExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TFCalendarViewExample/TFCalendarViewExample-Prefix.pch";
+				INFOPLIST_FILE = "TFCalendarViewExample/TFCalendarViewExample-Info.plist";
+				PRODUCT_NAME = TFCalendarViewExample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -273,9 +273,9 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarViewExample/CalendarViewExample-Prefix.pch";
-				INFOPLIST_FILE = "CalendarViewExample/CalendarViewExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TFCalendarViewExample/TFCalendarViewExample-Prefix.pch";
+				INFOPLIST_FILE = "TFCalendarViewExample/TFCalendarViewExample-Info.plist";
+				PRODUCT_NAME = TFCalendarViewExample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -283,7 +283,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2432C1B15F91445007F2391 /* Build configuration list for PBXProject "CalendarViewExample" */ = {
+		E2432C1B15F91445007F2391 /* Build configuration list for PBXProject "TFCalendarViewExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2432C3D15F91446007F2391 /* Debug */,
@@ -292,13 +292,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2432C3F15F91446007F2391 /* Build configuration list for PBXNativeTarget "CalendarViewExample" */ = {
+		E2432C3F15F91446007F2391 /* Build configuration list for PBXNativeTarget "TFCalendarViewExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2432C4015F91446007F2391 /* Debug */,
 				E2432C4115F91446007F2391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
