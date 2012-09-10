@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import <CalendarView/CalendarView.h>
+#import <CalendarView/TFCalendarView.h>
 
 @interface AppDelegate ()
-@property (weak) IBOutlet CalendarView *calendarView;
+@property (weak) IBOutlet TFCalendarView *calendarView;
 @end
 
 @implementation AppDelegate

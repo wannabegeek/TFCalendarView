@@ -14,7 +14,7 @@ typedef enum {
 	TFDayCellNextMonth
 } CellMonthRepresentation;
 
-@interface CalendarDayCell : NSCell
+@interface TFCalendarDayCell : NSCell
 
 @property (assign) CellMonthRepresentation monthRepresentation;
 @property (assign) BOOL depressed;

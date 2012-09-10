@@ -9,22 +9,22 @@
 /* Begin PBXBuildFile section */
 		E2432C0215F913EC007F2391 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2432C0115F913EC007F2391 /* Cocoa.framework */; };
 		E2432C0C15F913EC007F2391 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2432C0A15F913EC007F2391 /* InfoPlist.strings */; };
-		E2432C1015F913EC007F2391 /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C0F15F913EC007F2391 /* CalendarView.m */; };
-		E2432C4615F915B3007F2391 /* CalendarDayCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C4415F915B3007F2391 /* CalendarDayCell.h */; };
-		E2432C4715F915B3007F2391 /* CalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C4515F915B3007F2391 /* CalendarDayCell.m */; };
-		E2432C5415FA1863007F2391 /* GradientBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C5215FA1863007F2391 /* GradientBackgroundView.h */; };
-		E2432C5515FA1863007F2391 /* GradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C5315FA1863007F2391 /* GradientBackgroundView.m */; };
+		E2432C1015F913EC007F2391 /* TFCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C0F15F913EC007F2391 /* TFCalendarView.m */; };
+		E2432C4615F915B3007F2391 /* TFCalendarDayCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C4415F915B3007F2391 /* TFCalendarDayCell.h */; };
+		E2432C4715F915B3007F2391 /* TFCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C4515F915B3007F2391 /* TFCalendarDayCell.m */; };
 		E2432C5A15FA6F6D007F2391 /* leftarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E2432C5615FA6F6D007F2391 /* leftarrow.png */; };
 		E2432C5B15FA6F6D007F2391 /* leftarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2432C5715FA6F6D007F2391 /* leftarrow@2x.png */; };
 		E2432C5C15FA6F6D007F2391 /* rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E2432C5815FA6F6D007F2391 /* rightarrow.png */; };
 		E2432C5D15FA6F6D007F2391 /* rightarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2432C5915FA6F6D007F2391 /* rightarrow@2x.png */; };
-		E2432C6015FA8058007F2391 /* CalendarMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C5E15FA8058007F2391 /* CalendarMatrix.h */; };
-		E2432C6115FA8058007F2391 /* CalendarMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C5F15FA8058007F2391 /* CalendarMatrix.m */; };
-		E2432C6215FAA385007F2391 /* CalendarView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C0E15F913EC007F2391 /* CalendarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2432C6015FA8058007F2391 /* TFCalendarMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C5E15FA8058007F2391 /* TFCalendarMatrix.h */; };
+		E2432C6115FA8058007F2391 /* TFCalendarMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C5F15FA8058007F2391 /* TFCalendarMatrix.m */; };
+		E2432C6215FAA385007F2391 /* TFCalendarView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C0E15F913EC007F2391 /* TFCalendarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2432C6515FB6930007F2391 /* NSIndexPath+NSMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C6315FB6930007F2391 /* NSIndexPath+NSMatrix.h */; };
 		E2432C6615FB6930007F2391 /* NSIndexPath+NSMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C6415FB6930007F2391 /* NSIndexPath+NSMatrix.m */; };
 		E2432C6915FD1037007F2391 /* NSDate+Calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C6715FD1036007F2391 /* NSDate+Calendar.h */; };
 		E2432C6A15FD1037007F2391 /* NSDate+Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C6815FD1036007F2391 /* NSDate+Calendar.m */; };
+		E2432C8415FDD071007F2391 /* TFDateControlBar.h in Headers */ = {isa = PBXBuildFile; fileRef = E2432C8215FDD071007F2391 /* TFDateControlBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2432C8515FDD071007F2391 /* TFDateControlBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2432C8315FDD071007F2391 /* TFDateControlBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,22 +36,22 @@
 		E2432C0915F913EC007F2391 /* CalendarView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalendarView-Info.plist"; sourceTree = "<group>"; };
 		E2432C0B15F913EC007F2391 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E2432C0D15F913EC007F2391 /* CalendarView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalendarView-Prefix.pch"; sourceTree = "<group>"; };
-		E2432C0E15F913EC007F2391 /* CalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
-		E2432C0F15F913EC007F2391 /* CalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
-		E2432C4415F915B3007F2391 /* CalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDayCell.h; sourceTree = "<group>"; };
-		E2432C4515F915B3007F2391 /* CalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDayCell.m; sourceTree = "<group>"; };
-		E2432C5215FA1863007F2391 /* GradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientBackgroundView.h; sourceTree = "<group>"; };
-		E2432C5315FA1863007F2391 /* GradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientBackgroundView.m; sourceTree = "<group>"; };
+		E2432C0E15F913EC007F2391 /* TFCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFCalendarView.h; sourceTree = "<group>"; };
+		E2432C0F15F913EC007F2391 /* TFCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFCalendarView.m; sourceTree = "<group>"; };
+		E2432C4415F915B3007F2391 /* TFCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCalendarDayCell.h; sourceTree = "<group>"; };
+		E2432C4515F915B3007F2391 /* TFCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCalendarDayCell.m; sourceTree = "<group>"; };
 		E2432C5615FA6F6D007F2391 /* leftarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftarrow.png; sourceTree = "<group>"; };
 		E2432C5715FA6F6D007F2391 /* leftarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftarrow@2x.png"; sourceTree = "<group>"; };
 		E2432C5815FA6F6D007F2391 /* rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightarrow.png; sourceTree = "<group>"; };
 		E2432C5915FA6F6D007F2391 /* rightarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightarrow@2x.png"; sourceTree = "<group>"; };
-		E2432C5E15FA8058007F2391 /* CalendarMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarMatrix.h; sourceTree = "<group>"; };
-		E2432C5F15FA8058007F2391 /* CalendarMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMatrix.m; sourceTree = "<group>"; };
+		E2432C5E15FA8058007F2391 /* TFCalendarMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCalendarMatrix.h; sourceTree = "<group>"; };
+		E2432C5F15FA8058007F2391 /* TFCalendarMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCalendarMatrix.m; sourceTree = "<group>"; };
 		E2432C6315FB6930007F2391 /* NSIndexPath+NSMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+NSMatrix.h"; sourceTree = "<group>"; };
 		E2432C6415FB6930007F2391 /* NSIndexPath+NSMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+NSMatrix.m"; sourceTree = "<group>"; };
 		E2432C6715FD1036007F2391 /* NSDate+Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Calendar.h"; sourceTree = "<group>"; };
 		E2432C6815FD1036007F2391 /* NSDate+Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Calendar.m"; sourceTree = "<group>"; };
+		E2432C8215FDD071007F2391 /* TFDateControlBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDateControlBar.h; sourceTree = "<group>"; };
+		E2432C8315FDD071007F2391 /* TFDateControlBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDateControlBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +105,14 @@
 		E2432C0715F913EC007F2391 /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				E2432C0E15F913EC007F2391 /* CalendarView.h */,
-				E2432C0F15F913EC007F2391 /* CalendarView.m */,
-				E2432C5E15FA8058007F2391 /* CalendarMatrix.h */,
-				E2432C5F15FA8058007F2391 /* CalendarMatrix.m */,
-				E2432C5215FA1863007F2391 /* GradientBackgroundView.h */,
-				E2432C5315FA1863007F2391 /* GradientBackgroundView.m */,
-				E2432C4415F915B3007F2391 /* CalendarDayCell.h */,
-				E2432C4515F915B3007F2391 /* CalendarDayCell.m */,
+				E2432C0E15F913EC007F2391 /* TFCalendarView.h */,
+				E2432C0F15F913EC007F2391 /* TFCalendarView.m */,
+				E2432C5E15FA8058007F2391 /* TFCalendarMatrix.h */,
+				E2432C5F15FA8058007F2391 /* TFCalendarMatrix.m */,
+				E2432C8215FDD071007F2391 /* TFDateControlBar.h */,
+				E2432C8315FDD071007F2391 /* TFDateControlBar.m */,
+				E2432C4415F915B3007F2391 /* TFCalendarDayCell.h */,
+				E2432C4515F915B3007F2391 /* TFCalendarDayCell.m */,
 				E2432C6315FB6930007F2391 /* NSIndexPath+NSMatrix.h */,
 				E2432C6415FB6930007F2391 /* NSIndexPath+NSMatrix.m */,
 				E2432C6715FD1036007F2391 /* NSDate+Calendar.h */,
@@ -143,10 +143,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2432C6215FAA385007F2391 /* CalendarView.h in Headers */,
-				E2432C4615F915B3007F2391 /* CalendarDayCell.h in Headers */,
-				E2432C5415FA1863007F2391 /* GradientBackgroundView.h in Headers */,
-				E2432C6015FA8058007F2391 /* CalendarMatrix.h in Headers */,
+				E2432C6215FAA385007F2391 /* TFCalendarView.h in Headers */,
+				E2432C8415FDD071007F2391 /* TFDateControlBar.h in Headers */,
+				E2432C4615F915B3007F2391 /* TFCalendarDayCell.h in Headers */,
+				E2432C6015FA8058007F2391 /* TFCalendarMatrix.h in Headers */,
 				E2432C6515FB6930007F2391 /* NSIndexPath+NSMatrix.h in Headers */,
 				E2432C6915FD1037007F2391 /* NSDate+Calendar.h in Headers */,
 			);
@@ -219,12 +219,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2432C1015F913EC007F2391 /* CalendarView.m in Sources */,
-				E2432C4715F915B3007F2391 /* CalendarDayCell.m in Sources */,
-				E2432C5515FA1863007F2391 /* GradientBackgroundView.m in Sources */,
-				E2432C6115FA8058007F2391 /* CalendarMatrix.m in Sources */,
+				E2432C1015F913EC007F2391 /* TFCalendarView.m in Sources */,
+				E2432C4715F915B3007F2391 /* TFCalendarDayCell.m in Sources */,
+				E2432C6115FA8058007F2391 /* TFCalendarMatrix.m in Sources */,
 				E2432C6615FB6930007F2391 /* NSIndexPath+NSMatrix.m in Sources */,
 				E2432C6A15FD1037007F2391 /* NSDate+Calendar.m in Sources */,
+				E2432C8515FDD071007F2391 /* TFDateControlBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +342,7 @@
 				E2432C1515F913EC007F2391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

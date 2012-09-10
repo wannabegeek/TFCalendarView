@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFDateControlBar.h"
 
-@interface CalendarView : NSView
+@interface TFCalendarView : NSView <TFDateControlBarDelegate>
 
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSDate *selectedDate;

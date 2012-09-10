@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Tom Fewster. All rights reserved.
 //
 
-#import "CalendarMatrix.h"
+#import "TFCalendarMatrix.h"
 
-@implementation CalendarMatrix
+@implementation TFCalendarMatrix
 
 @synthesize monthStartIndexPath = _monthStartIndexPath;
 @synthesize monthEndIndexPath = _monthEndIndexPath;

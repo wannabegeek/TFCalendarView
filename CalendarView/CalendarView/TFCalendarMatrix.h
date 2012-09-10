@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CalendarMatrix : NSMatrix
+@interface TFCalendarMatrix : NSMatrix
 
 @property (strong) NSIndexPath *monthStartIndexPath;
 @property (strong) NSIndexPath *monthEndIndexPath;

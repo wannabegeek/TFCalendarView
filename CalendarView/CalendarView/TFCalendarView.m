@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Tom Fewster. All rights reserved.
 //
 
-#import "CalendarView.h"
-#import "GradientBackgroundView.h"
-#import "CalendarDayCell.h"
-#import "CalendarMatrix.h"
+#import "TFCalendarView.h"
+#import "TFDateControlBar.h"
+#import "TFCalendarDayCell.h"
+#import "TFCalendarMatrix.h"
 #import "NSIndexPath+NSMatrix.h"
 #import "NSDate+Calendar.h"
 
@@ -19,33 +19,28 @@
 
 #define SCROLL_SPEED 0.25f
 
-@interface CalendarView ()
-@property (strong) CalendarMatrix *matrix;
-@property (strong) CalendarMatrix *bufferedMatrix;
-@property (strong) GradientBackgroundView *dateBar;
+@interface TFCalendarView ()
+@property (strong) TFCalendarMatrix *matrix;
+@property (strong) TFCalendarMatrix *bufferedMatrix;
+@property (strong) TFDateControlBar *dateBar;
 @property (assign) NSInteger currentOffset;
 @property (strong) NSTextField *dateLabel;
-
-@property (strong) NSButton *previousMonthButton;
-@property (strong) NSButton *nextMonthButton;
 
 @property (assign) BOOL animationInProgress;
 
 @property (strong) NSDate *depressedRangeStart;
 @property (strong) NSDate *depressedRangeEnd;
 
-- (void)populateMatrix:(CalendarMatrix *)matrix offsetFromCurrentMonth:(NSInteger)offset;
+- (void)populateMatrix:(TFCalendarMatrix *)matrix offsetFromCurrentMonth:(NSInteger)offset;
 @end
 
-@implementation CalendarView
+@implementation TFCalendarView
 
 @synthesize matrix = _matrix;
 @synthesize bufferedMatrix = _bufferedMatrix;
 @synthesize dateBar = _dateBar;
 @synthesize currentOffset = _currentOffset;
 @synthesize dateLabel = _dateLabel;
-@synthesize previousMonthButton = _previousMonthButton;
-@synthesize nextMonthButton = _nextMonthButton;
 @synthesize selectedDate = _selectedDate;
 @synthesize animationInProgress = _animationInProgress;
 @synthesize enabled = _enabled;
@@ -71,7 +66,7 @@
 		[self addSubview:containerView];
 
 		// create the matrix which is going to hold our day cells
-		_matrix = [[CalendarMatrix alloc] initWithFrame:containerView.frame mode:NSRadioModeMatrix cellClass:[CalendarDayCell class] numberOfRows:GRID_ROWS numberOfColumns:GRID_COLUMNS];
+		_matrix = [[TFCalendarMatrix alloc] initWithFrame:containerView.frame mode:NSRadioModeMatrix cellClass:[TFCalendarDayCell class] numberOfRows:GRID_ROWS numberOfColumns:GRID_COLUMNS];
 		_matrix.allowsEmptySelection = NO;
 		_matrix.cellSize = NSMakeSize(cellSize, cellSize);
 		_matrix.intercellSpacing = NSMakeSize(0.0f, 0.0f);
@@ -80,7 +75,7 @@
 
 		// this is a temporary buffer, which is switched back and fourth between _matrix during animations
 		// this is generally created offscreen and animated into place.
-		_bufferedMatrix = [[CalendarMatrix alloc] initWithFrame:NSZeroRect mode:NSRadioModeMatrix cellClass:[CalendarDayCell class] numberOfRows:GRID_ROWS numberOfColumns:GRID_COLUMNS];
+		_bufferedMatrix = [[TFCalendarMatrix alloc] initWithFrame:NSZeroRect mode:NSRadioModeMatrix cellClass:[TFCalendarDayCell class] numberOfRows:GRID_ROWS numberOfColumns:GRID_COLUMNS];
 		_bufferedMatrix.allowsEmptySelection = NO;
 		_bufferedMatrix.cellSize = NSMakeSize(cellSize, cellSize);
 		_bufferedMatrix.intercellSpacing = NSMakeSize(0.0f, 0.0f);
@@ -96,87 +91,8 @@
 		dateBarFrame.size.height = DATE_BAR_HEIGHT;
 		dateBarFrame.origin.y = _matrix.frame.size.height - 1.0f;// + 1.0f;
 
-		NSShadow *textShadow = [[NSShadow alloc] init];
-		[textShadow setShadowColor:[NSColor whiteColor]];
-		[textShadow setShadowOffset:NSMakeSize(0, -1)];
-		[textShadow setShadowBlurRadius:0.0];
-
-		_dateBar = [[GradientBackgroundView alloc] initWithFrame:dateBarFrame];
-
-		_dateLabel = [[NSTextField alloc] initWithFrame:NSInsetRect([_dateBar bounds], 40.0f, 10.0f)];
-		_dateLabel.autoresizingMask |= NSViewMinXMargin | NSViewMaxXMargin | NSViewWidthSizable;
-		_dateLabel.font = [NSFont fontWithName:@"Helvetica Bold" size:17.0f];
-		_dateLabel.alignment = NSCenterTextAlignment;
-		[_dateLabel setBordered:NO];
-		[_dateLabel setBezeled:NO];
-		[_dateLabel setEditable:NO];
-		_dateLabel.textColor = [NSColor darkGrayColor];
-		_dateLabel.backgroundColor = [NSColor clearColor];
-		_dateLabel.shadow = textShadow;
-		[_dateBar addSubview:_dateLabel];
-
-		NSRect buttonRect = NSZeroRect;
-		NSRect remainingRect = NSZeroRect;
-		NSDivideRect(NSInsetRect([_dateBar bounds], 10.0f, 10.0f), &buttonRect, &remainingRect, 20.0f, NSMinXEdge);
-		_previousMonthButton = [[NSButton alloc] initWithFrame:buttonRect];
-		_previousMonthButton.title = nil;
-		[_previousMonthButton setBordered:NO];
-		_previousMonthButton.target = self;
-		_previousMonthButton.action = @selector(previousMonth:);
-		[_dateBar addSubview:_previousMonthButton];
-
-		buttonRect = NSZeroRect;
-		NSDivideRect(NSInsetRect([_dateBar bounds], 10.0f, 10.0f), &buttonRect, &remainingRect, 20.0f, NSMaxXEdge);
-		_nextMonthButton = [[NSButton alloc] initWithFrame:buttonRect];
-		_nextMonthButton.title = nil;
-		[_nextMonthButton setBordered:NO];
-		_nextMonthButton.target = self;
-		_nextMonthButton.action = @selector(nextMonth:);
-		_nextMonthButton.autoresizingMask |=  NSViewMinXMargin;
-		[_dateBar addSubview:_nextMonthButton];
-
-		NSString *leftArrowPath = nil;
-		NSString *rightArrowPath = nil;
-		for (NSBundle *bundle in [NSBundle allFrameworks]) {
-			if ((leftArrowPath = [bundle pathForImageResource:@"leftarrow"])) {
-				[_previousMonthButton setImage:[[NSImage alloc] initWithContentsOfFile:leftArrowPath]];
-			}
-			if ((rightArrowPath = [bundle pathForImageResource:@"rightarrow"])) {
-				[_nextMonthButton setImage:[[NSImage alloc] initWithContentsOfFile:rightArrowPath]];
-			}
-
-			if (_nextMonthButton.image && _previousMonthButton.image) {
-				break;
-			}
-		}
-
-		// We now need to add the day lables at the top of each column
-		NSArray *daysOfTheWeek = [NSArray arrayWithObjects:@"Sun", @"Mon", @"Tues", @"Wed", @"Thurs", @"Fri", @"Sat", nil];
-
-		NSUInteger c = 0;
-		for (NSString *day in daysOfTheWeek) {
-			NSRect frame = [_dateBar bounds];
-			frame.size.height = 10.0f;
-			frame.size.width = cellSize;
-			frame.origin.y = 1.0f;
-			frame.origin.x = c * cellSize;
-			NSTextField *dayLabel = [[NSTextField alloc] initWithFrame:frame];
-			dayLabel.autoresizingMask |= NSViewMinXMargin | NSViewMaxXMargin | NSViewWidthSizable;
-			dayLabel.font = [NSFont fontWithName:@"Helvetica" size:9.0f];
-			dayLabel.alignment = NSCenterTextAlignment;
-			[dayLabel setBordered:NO];
-			[dayLabel setBezeled:NO];
-			[dayLabel setEditable:NO];
-			dayLabel.textColor = [NSColor grayColor];
-			dayLabel.shadow = textShadow;
-			dayLabel.backgroundColor = [NSColor clearColor];
-
-			dayLabel.stringValue = day;
-			
-			[_dateBar addSubview:dayLabel];
-			c++;
-		}
-		
+		_dateBar = [[TFDateControlBar alloc] initWithFrame:dateBarFrame];
+		_dateBar.delegate = self;
 		[self addSubview:_dateBar];
 
 		// populate teh matrix witht eh current offset
@@ -217,127 +133,7 @@
 
 }
 
-- (IBAction)previousMonth:(NSButton *)sender {
-	_currentOffset--;
-	[_matrix deselectAllCells];
-
-	[self populateMatrix:_bufferedMatrix offsetFromCurrentMonth:_currentOffset];
-	
-	NSRect matrixFrame = [self frame];
-	matrixFrame.size.height -= DATE_BAR_HEIGHT;
-
-	CGFloat cellSize = MIN(matrixFrame.size.width/(CGFloat)GRID_COLUMNS, matrixFrame.size.height/(CGFloat)GRID_ROWS);
-	_bufferedMatrix.cellSize = NSMakeSize(cellSize, cellSize);
-
-	// calculate the number of rows we need to over-lap at the top
-	NSInteger rowOffset = _matrix.monthStartIndexPath.row + (GRID_ROWS - _bufferedMatrix.monthEndIndexPath.row);
-
-	// If the animation is already in progress, we don't need to do any of this. The populateMatrix:offsetFromCurrentMonth: call
-	// will update the _bufferedMatrix which is currenly being animated into place.
-	// The worst taht can happen is the user lands up at the month they wanted, but the animation missed out displaying a few months.
-	// Since this occoures quite quickly, no-one wil notice.
-	if (!_animationInProgress) {
-		NSRect frame = _matrix.frame;
-		frame.origin.y += frame.size.height - (cellSize * rowOffset);
-		_bufferedMatrix.frame = frame;
-		[_matrix.superview addSubview:_bufferedMatrix];
-	}
-
-	// Update the selectedDate, if we have moved months, we don't want a date from the next month selected. So in this case
-	// select the last day of the new month
-	if ([(CalendarDayCell *)_matrix.selectedCell monthRepresentation] != TFDayCellPreviousMonth) {
-		CalendarDayCell *cell = [_bufferedMatrix cellAtRow:_bufferedMatrix.monthEndIndexPath.row column:_bufferedMatrix.monthEndIndexPath.column];
-		[self willChangeValueForKey:@"selectedDate"];
-		_selectedDate = cell.representedObject;
-		[self didChangeValueForKey:@"selectedDate"];
-		[_bufferedMatrix selectCell:cell];
-	}
-
-	// Animate the new matrix into view, by sliding it in from the bottom
-	if (!_animationInProgress) {
-		[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-			_animationInProgress = YES;
-
-			[context setDuration:SCROLL_SPEED];
-			// move the new matrix in
-			[[_bufferedMatrix animator] setFrame:_matrix.frame];
-			// ...and the old one out
-			NSRect moveOutFrame = _matrix.frame;
-			moveOutFrame.origin.y -= moveOutFrame.size.height - (cellSize * rowOffset);
-			[[_matrix animator] setFrame:moveOutFrame];
-		} completionHandler:^{
-			[_matrix removeFromSuperview];
-			// swap the buffers so tehy can be reused
-			CalendarMatrix *temp = _matrix;
-			_matrix = _bufferedMatrix;
-			_bufferedMatrix = temp;
-
-			_animationInProgress = NO;
-		}];
-	}
-}
-
-- (IBAction)nextMonth:(NSButton *)sender {
-	_currentOffset++;
-	[_matrix deselectAllCells];
-
-	[self populateMatrix:_bufferedMatrix offsetFromCurrentMonth:_currentOffset];
-
-	NSRect matrixFrame = [self frame];
-	matrixFrame.size.height -= DATE_BAR_HEIGHT;
-
-	CGFloat cellSize = MIN(matrixFrame.size.width/(CGFloat)GRID_COLUMNS, matrixFrame.size.height/(CGFloat)GRID_ROWS);
-	_bufferedMatrix.cellSize = NSMakeSize(cellSize, cellSize);
-
-	// calculate the number of rows we need to over-lap at the top
-	NSInteger rowOffset = GRID_ROWS - _matrix.monthEndIndexPath.row;
-
-	// If the animation is already in progress, we don't need to do any of this. The populateMatrix:offsetFromCurrentMonth: call
-	// will update the _bufferedMatrix which is currenly being animated into place.
-	// The worst taht can happen is the user lands up at the month they wanted, but the animation missed out displaying a few months.
-	// Since this occoures quite quickly, no-one wil notice.
-	if (!_animationInProgress) {
-		NSRect frame = _matrix.frame;
-		frame.origin.y -= frame.size.height - (cellSize * rowOffset);
-		_bufferedMatrix.frame = frame;
-		[_matrix.superview addSubview:_bufferedMatrix];
-	}
-
-	// Update the selectedDate, if we have moved months, we don't want a date from the previous month selected. So in this case
-	// select the first day of the new month
-	if ([(CalendarDayCell *)_matrix.selectedCell monthRepresentation] != TFDayCellNextMonth) {
-		CalendarDayCell *cell = [_bufferedMatrix cellAtRow:_bufferedMatrix.monthStartIndexPath.row column:_bufferedMatrix.monthStartIndexPath.column];
-		[self willChangeValueForKey:@"selectedDate"];
-		_selectedDate = cell.representedObject;
-		[self didChangeValueForKey:@"selectedDate"];
-		[_bufferedMatrix selectCell:cell];
-	}
-
-	// Animate the new matrix into view, by sliding it in from the top
-	if (!_animationInProgress) {
-		[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-			_animationInProgress = YES;
-			
-			[context setDuration:SCROLL_SPEED];
-			// move the new matrix in
-			[[_bufferedMatrix animator] setFrame:_matrix.frame];
-			// ...and the old one out
-			NSRect moveOutFrame = _matrix.frame;
-			moveOutFrame.origin.y += moveOutFrame.size.height - (cellSize * rowOffset);
-			[[_matrix animator] setFrame:moveOutFrame];
-		} completionHandler:^{
-			[_matrix removeFromSuperview];
-			// swap the buffers so tehy can be reused
-			CalendarMatrix *temp = _matrix;
-			_matrix = _bufferedMatrix;
-			_bufferedMatrix = temp;
-
-			_animationInProgress = NO;
-		}];
-	}
-}
-
-- (void)populateMatrix:(CalendarMatrix *)matrix offsetFromCurrentMonth:(NSInteger)offset {
+- (void)populateMatrix:(TFCalendarMatrix *)matrix offsetFromCurrentMonth:(NSInteger)offset {
 	// This will lay-out the cells into 'matrix', the displayed month should be relative to the current
 	// month (i.e. [NSDate date]) adjusted by offset
 
@@ -382,7 +178,7 @@
 	NSDate *currentDay = startDate;
 	for (NSUInteger row = 0; row < GRID_ROWS; row++) {
 		for (NSUInteger col = 0; col < GRID_COLUMNS; col++) {
-			CalendarDayCell *cell = [matrix cellAtRow:row column:col];
+			TFCalendarDayCell *cell = [matrix cellAtRow:row column:col];
 			cell.representedObject = currentDay;
 			// Calculate whether the cell we are putting here is for the month we are trying to display
 			// if not, we will still display it, but it will be greyed out
@@ -418,14 +214,12 @@
 	[matrix setNeedsDisplay];
 
 	// Update the displayed month & year above the date matrix
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"YYYY MMMM" options:0 locale:[NSLocale systemLocale]];
-	_dateLabel.stringValue = [dateFormatter stringFromDate:firstDayOfMonth];
+	[_dateBar setDateForMonth:firstDayOfMonth];
 }
 
 - (IBAction)matrixClicked:(id)sender {
 	// a new date has been selected
-	CalendarDayCell *cell = _matrix.selectedCell;
+	TFCalendarDayCell *cell = _matrix.selectedCell;
 	if (![_selectedDate isEqualToDate:cell.representedObject]) {
 		[self willChangeValueForKey:@"selectedDate"];
 		_selectedDate = cell.representedObject;
@@ -469,8 +263,6 @@
 
 			[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
 				_animationInProgress = YES;
-				[_previousMonthButton setEnabled:NO];
-				[_nextMonthButton setEnabled:NO];
 
 				[context setDuration:SCROLL_SPEED];
 				[[_bufferedMatrix animator] setAlphaValue:1.0f];
@@ -478,12 +270,10 @@
 			} completionHandler:^{
 				[_matrix removeFromSuperview];
 				[_matrix setAlphaValue:1.0f];
-				CalendarMatrix *temp = _matrix;
+				TFCalendarMatrix *temp = _matrix;
 				_matrix = _bufferedMatrix;
 				_bufferedMatrix = temp;
 
-				[_previousMonthButton setEnabled:YES];
-				[_nextMonthButton setEnabled:YES];
 				_animationInProgress = NO;
 			}];
 		}
@@ -501,5 +291,126 @@
 	[self populateMatrix:_matrix offsetFromCurrentMonth:_currentOffset];
 }
 
+#pragma mark - TFDateControlBarDelegate
+
+- (void)nextMonth:(TFDateControlBar *)dateControlBar {
+	_currentOffset--;
+	[_matrix deselectAllCells];
+
+	[self populateMatrix:_bufferedMatrix offsetFromCurrentMonth:_currentOffset];
+
+	NSRect matrixFrame = [self frame];
+	matrixFrame.size.height -= DATE_BAR_HEIGHT;
+
+	CGFloat cellSize = MIN(matrixFrame.size.width/(CGFloat)GRID_COLUMNS, matrixFrame.size.height/(CGFloat)GRID_ROWS);
+	_bufferedMatrix.cellSize = NSMakeSize(cellSize, cellSize);
+
+	// calculate the number of rows we need to over-lap at the top
+	NSInteger rowOffset = _matrix.monthStartIndexPath.row + (GRID_ROWS - _bufferedMatrix.monthEndIndexPath.row);
+
+	// If the animation is already in progress, we don't need to do any of this. The populateMatrix:offsetFromCurrentMonth: call
+	// will update the _bufferedMatrix which is currenly being animated into place.
+	// The worst taht can happen is the user lands up at the month they wanted, but the animation missed out displaying a few months.
+	// Since this occoures quite quickly, no-one wil notice.
+	if (!_animationInProgress) {
+		NSRect frame = _matrix.frame;
+		frame.origin.y += frame.size.height - (cellSize * rowOffset);
+		_bufferedMatrix.frame = frame;
+		[_matrix.superview addSubview:_bufferedMatrix];
+	}
+
+	// Update the selectedDate, if we have moved months, we don't want a date from the next month selected. So in this case
+	// select the last day of the new month
+	if ([(TFCalendarDayCell *)_matrix.selectedCell monthRepresentation] != TFDayCellPreviousMonth) {
+		TFCalendarDayCell *cell = [_bufferedMatrix cellAtRow:_bufferedMatrix.monthEndIndexPath.row column:_bufferedMatrix.monthEndIndexPath.column];
+		[self willChangeValueForKey:@"selectedDate"];
+		_selectedDate = cell.representedObject;
+		[self didChangeValueForKey:@"selectedDate"];
+		[_bufferedMatrix selectCell:cell];
+	}
+
+	// Animate the new matrix into view, by sliding it in from the bottom
+	if (!_animationInProgress) {
+		[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+			_animationInProgress = YES;
+
+			[context setDuration:SCROLL_SPEED];
+			// move the new matrix in
+			[[_bufferedMatrix animator] setFrame:_matrix.frame];
+			// ...and the old one out
+			NSRect moveOutFrame = _matrix.frame;
+			moveOutFrame.origin.y -= moveOutFrame.size.height - (cellSize * rowOffset);
+			[[_matrix animator] setFrame:moveOutFrame];
+		} completionHandler:^{
+			[_matrix removeFromSuperview];
+			// swap the buffers so tehy can be reused
+			TFCalendarMatrix *temp = _matrix;
+			_matrix = _bufferedMatrix;
+			_bufferedMatrix = temp;
+
+			_animationInProgress = NO;
+		}];
+	}
+}
+
+- (void)previousMonth:(TFDateControlBar *)dateControlBar {
+	_currentOffset++;
+	[_matrix deselectAllCells];
+
+	[self populateMatrix:_bufferedMatrix offsetFromCurrentMonth:_currentOffset];
+
+	NSRect matrixFrame = [self frame];
+	matrixFrame.size.height -= DATE_BAR_HEIGHT;
+
+	CGFloat cellSize = MIN(matrixFrame.size.width/(CGFloat)GRID_COLUMNS, matrixFrame.size.height/(CGFloat)GRID_ROWS);
+	_bufferedMatrix.cellSize = NSMakeSize(cellSize, cellSize);
+
+	// calculate the number of rows we need to over-lap at the top
+	NSInteger rowOffset = GRID_ROWS - _matrix.monthEndIndexPath.row;
+
+	// If the animation is already in progress, we don't need to do any of this. The populateMatrix:offsetFromCurrentMonth: call
+	// will update the _bufferedMatrix which is currenly being animated into place.
+	// The worst taht can happen is the user lands up at the month they wanted, but the animation missed out displaying a few months.
+	// Since this occoures quite quickly, no-one wil notice.
+	if (!_animationInProgress) {
+		NSRect frame = _matrix.frame;
+		frame.origin.y -= frame.size.height - (cellSize * rowOffset);
+		_bufferedMatrix.frame = frame;
+		[_matrix.superview addSubview:_bufferedMatrix];
+	}
+
+	// Update the selectedDate, if we have moved months, we don't want a date from the previous month selected. So in this case
+	// select the first day of the new month
+	if ([(TFCalendarDayCell *)_matrix.selectedCell monthRepresentation] != TFDayCellNextMonth) {
+		TFCalendarDayCell *cell = [_bufferedMatrix cellAtRow:_bufferedMatrix.monthStartIndexPath.row column:_bufferedMatrix.monthStartIndexPath.column];
+		[self willChangeValueForKey:@"selectedDate"];
+		_selectedDate = cell.representedObject;
+		[self didChangeValueForKey:@"selectedDate"];
+		[_bufferedMatrix selectCell:cell];
+	}
+
+	// Animate the new matrix into view, by sliding it in from the top
+	if (!_animationInProgress) {
+		[NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+			_animationInProgress = YES;
+
+			[context setDuration:SCROLL_SPEED];
+			// move the new matrix in
+			[[_bufferedMatrix animator] setFrame:_matrix.frame];
+			// ...and the old one out
+			NSRect moveOutFrame = _matrix.frame;
+			moveOutFrame.origin.y += moveOutFrame.size.height - (cellSize * rowOffset);
+			[[_matrix animator] setFrame:moveOutFrame];
+		} completionHandler:^{
+			[_matrix removeFromSuperview];
+			// swap the buffers so tehy can be reused
+			TFCalendarMatrix *temp = _matrix;
+			_matrix = _bufferedMatrix;
+			_bufferedMatrix = temp;
+
+			_animationInProgress = NO;
+		}];
+	}
+}
 
 @end

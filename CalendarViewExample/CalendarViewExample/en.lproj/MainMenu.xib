@@ -1303,7 +1303,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{280, 280}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSCustomView" id="310535993">
@@ -1314,14 +1314,13 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSNextKeyView" ref="581127799"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<string key="NSClassName">CalendarView</string>
+							<string key="NSClassName">TFCalendarView</string>
 						</object>
 						<object class="NSDatePicker" id="581127799">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 20}, {104, 27}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSDatePickerCell" key="NSCell" id="956106902">
@@ -1385,7 +1384,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						</object>
 					</array>
 					<string key="NSFrameSize">{280, 330}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="310535993"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>

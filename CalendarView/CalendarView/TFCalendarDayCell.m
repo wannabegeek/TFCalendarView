@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Tom Fewster. All rights reserved.
 //
 
-#import "CalendarDayCell.h"
+#import "TFCalendarDayCell.h"
 
-@interface CalendarDayCell ()
+@interface TFCalendarDayCell ()
 @property (strong) NSCalendar *currentCalendar;
 @property (strong) NSDateFormatter *dayFormatter;
 @property (strong) NSString *currentDayLabel;
 @end
 
-@implementation CalendarDayCell
+@implementation TFCalendarDayCell
 
 @synthesize monthRepresentation;
 
